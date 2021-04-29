@@ -51,14 +51,14 @@ router.post('/addForm', async (req, res) => {
     }
 });
 
-router.get('/getScoresByTwitterId', async (req, res) => {
+router.get('/getScoresByTwitterId/', async (req, res) => {
     try {
         if (req.isAuthenticated()) {
-            if (Object.keys(req.body).length === 0) { // Empty reqest body
+            if (!req.query.twitterId) { // Empty reqest body
                 throw "A single twitterId is required!"
             }
 
-            const twitterId = req.body.twitterId;
+            const twitterId = req.query.twitterId;
             let totalScores = 0;
 
             await Form.find({ twitterId: twitterId })
