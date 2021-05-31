@@ -2,7 +2,7 @@
 
 Please add your own .env file containning the connection string to your database and twitter api credentials. 
 
-e.g.
+e.g.  
 MONGDO_CONNECTION_URL=XXXXXXXXXXXXXX
 CONSUMER_KEY=XXXXXXXXXXXXXX
 CONSUMER_SECRET=XXXXXXXXXXXXXX
