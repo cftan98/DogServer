@@ -2,6 +2,7 @@ require('dotenv').config();
 const Twit = require('twit');
 const express = require('express');
 const router = express.Router();
+const axios = require('axios');
 
 var T = new Twit({
     consumer_key: process.env.CONSUMER_KEY,
@@ -56,6 +57,18 @@ router.get('/isLikedAndRetweeted/:name', (req, res) => {
         res.status(403).send();
     }
 });
+
+router.post('/follow/:id', (req, res) => {
+    if (!req.isAuthenticated) res.end(JSON.stringify({ "Is_success": false }));
+
+    try {
+        T.post('friendships/create', { screen_name: 'BitDotCountry' }, (req, response) => {
+            res.end(JSON.stringify({ "Is_success": true, "Data": response }))
+        })
+    } catch (err) {
+        res.end(JSON.stringify({ "Is_success": false, "Message": err }))
+    }
+})
 
 // router.get('/isReplied/:name', (req, res) => {
 //     try {
