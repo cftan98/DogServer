@@ -59,12 +59,26 @@ router.get('/isLikedAndRetweeted/:name', (req, res) => {
 });
 
 router.post('/follow/:id', (req, res) => {
-    if (!req.isAuthenticated) res.end(JSON.stringify({ "Is_success": false }));
+    if (!req.isAuthenticated()) { throw new Error("Please login!") }
 
     try {
-        T.post('friendships/create', { screen_name: 'BitDotCountry' }, (req, response) => {
+        T.post('friendships/create', { screen_name: 'BitDotCountry' }, (request, response) => {
             res.end(JSON.stringify({ "Is_success": true, "Data": response }))
         })
+    } catch (err) {
+        res.end(JSON.stringify({ "Is_success": false, "Message": err }))
+    }
+})
+
+router.post('/likeAndRetweet', (req, res) => {
+    if (!req.isAuthenticated()) { throw new Error("Please login!") }
+
+    try {
+        T.post('favorites/create', { id: "1380385038320115715" }, (request, response) => {
+            T.post('statuses/retweet/:id', { id: "1380385038320115715" }, (request2, response2) => {
+                res.end(JSON.stringify({ "Is_success": true }))
+            })
+        });
     } catch (err) {
         res.end(JSON.stringify({ "Is_success": false, "Message": err }))
     }
