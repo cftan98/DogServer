@@ -7,5 +7,3 @@ Exmaple .env file:
   MONGDO_CONNECTION_URL=""<br/>
   CONSUMER_KEY=""<br/>
   CONSUMER_SECRET=""<br/>
-  ACCESS_TOKEN=""<br/>
-  ACCESS_TOKEN_SECRET=""<br/>
