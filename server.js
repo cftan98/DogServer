@@ -4,13 +4,13 @@ const session = require('express-session');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const passport = require('passport');
-const twitterStrategy = require('./AuthStrategies/twitterStrategy');
+const { twitterStrategy, router: twitRouter } = require('./AuthStrategies/twitterStrategy');
 const User = require('./Models/User');
 
 const formRouter = require('./Routes/formRouter');
 const orgRouter = require('./Routes/organizationRouter');
 const campRouter = require('./Routes/campaignRouter');
-const twitRouter = require('./Routes/twitRouter');
+//const twitRouter = require('./Routes/twitRouter');
 
 const app = express();
 
